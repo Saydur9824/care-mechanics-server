@@ -5,7 +5,9 @@ const cors = require('cors');
 require('dotenv').config()
 
 const app = express()
-const port = 5000
+const port = process.env.PORT || 5000;
+
+// middleware
 app.use(cors());
 app.use(express.json());
 
@@ -40,7 +42,6 @@ async function run() {
         const service = req.body;
         console.log('hit the post api' ,service)
 
-        
         const result = await servicesCollection.insertOne(service);
         console.log(result)
         res.send(result)
